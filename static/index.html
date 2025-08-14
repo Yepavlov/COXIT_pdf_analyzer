@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Summary AI</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>PDF Summary AI 🧠</h1>
+        <p>Upload a PDF document (up to 50 MB) to get a summary of its contents.</p>
+
+        <form id="upload-form">
+            <input type="file" id="pdf-file" name="file" accept="application/pdf" required>
+            <button type="submit">Generate summary</button>
+        </form>
+
+        <div id="loader" class="hidden">
+            <div class="spinner"></div>
+            <p>Processing... This may take a few minutes for large files.</p>
+        </div>
+
+        <div id="result-container" class="hidden">
+            <h2>Result</h2>
+            <div id="result"></div>
+        </div>
+
+        <div id="history-container">
+            <h2>History (last 5)</h2>
+            <div id="history"></div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
