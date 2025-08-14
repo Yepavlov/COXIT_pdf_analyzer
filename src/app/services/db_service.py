@@ -2,11 +2,10 @@ from sqlalchemy.orm import Session
 from unstructured.partition.pdf import partition_pdf
 
 from src.app.api.openai_client import OpenAIClient
-from src.app.utils.exceptions import PDFSummaryError
 from src.app.config import get_settings
-from src.app.models.document import Document
 from src.app.logger_config import logger
-
+from src.app.models.document import Document
+from src.app.utils.exceptions import PDFSummaryError
 
 settings = get_settings()
 openai_client = OpenAIClient(api_key=settings.openai_api_key, model="gpt-4o-mini")
@@ -15,12 +14,7 @@ openai_client = OpenAIClient(api_key=settings.openai_api_key, model="gpt-4o-mini
 def get_document_history(db: Session, limit: int = 5) -> list[Document]:
     """Retrieves the latest processed documents from the database."""
     logger.info("LOGIC: Retrieving history from the database...")
-    return (
-        db.query(Document)
-        .order_by(Document.created_at.desc())
-        .limit(limit)
-        .all()
-    )
+    return db.query(Document).order_by(Document.created_at.desc()).limit(limit).all()
 
 
 def process_and_summarize_pdf(db: Session, file_path: str, filename: str) -> Document:

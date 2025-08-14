@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultDiv = document.getElementById('result');
     const historyDiv = document.getElementById('history');
     const fileInput = document.getElementById('pdf-file');
-    const API_BASE_URL = 'http://127.0.0.1:8000';
+    const API_BASE_URL = window.location.origin;
 
     async function loadHistory() {
         try {

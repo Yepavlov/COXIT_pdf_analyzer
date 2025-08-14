@@ -1,7 +1,8 @@
 from pathlib import Path
+
 from sqlalchemy import create_engine, event
-from sqlalchemy.orm import sessionmaker
 from sqlalchemy.engine import Engine
+from sqlalchemy.orm import sessionmaker
 
 from src.app.config import get_settings
 from src.app.logger_config import logger
@@ -17,7 +18,7 @@ class DataBase:
             autoflush=False,
         )
         Base.metadata.create_all(self._engine)
-        logger.info(f"The database is configured and the tables are created.")
+        logger.info("The database is configured and the tables are created.")
 
     def _create_engine(self, db_type: str, db_path: str) -> Engine:
         connection_string = f"{db_type}:///{db_path}"

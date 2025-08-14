@@ -6,7 +6,7 @@ import os.path
 from pathlib import Path
 
 import aiofiles
-from fastapi import FastAPI, HTTPException, UploadFile, File, Depends
+from fastapi import Depends, FastAPI, File, UploadFile
 from sqlalchemy.orm import Session
 from starlette.concurrency import run_in_threadpool
 from starlette.middleware.cors import CORSMiddleware
@@ -14,13 +14,13 @@ from starlette.requests import Request
 from starlette.responses import HTMLResponse, JSONResponse
 from starlette.staticfiles import StaticFiles
 
-from src.app.utils.helpers import validate_file_or_raise
-from src.app.db import database
-from src.app.models.shemas import SummaryResponse
-from src.app.services.db_service import process_and_summarize_pdf, get_document_history
 from src.app.config import get_settings
+from src.app.db import database
 from src.app.logger_config import logger
+from src.app.models.shemas import SummaryResponse
+from src.app.services.db_service import get_document_history, process_and_summarize_pdf
 from src.app.utils import exceptions
+from src.app.utils.helpers import validate_file_or_raise
 
 settings = get_settings()
 

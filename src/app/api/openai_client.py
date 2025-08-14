@@ -1,10 +1,11 @@
 import time
+
 import tiktoken
-from openai import OpenAI, APITimeoutError, APIError, RateLimitError
+from openai import APIError, APITimeoutError, OpenAI, RateLimitError
 
 from src.app.config import get_settings
-from src.app.prompts.summarized_prompt import SummarizedPrompt
 from src.app.logger_config import logger
+from src.app.prompts.summarized_prompt import SummarizedPrompt
 
 settings = get_settings()
 
@@ -121,11 +122,11 @@ class OpenAIClient:
         return chunks
 
     def _summarize_all_chunks(self, chunks: list[str]) -> list[str]:
-        """Gets list of summarized chunks."""
+        """Gets a list of summarized chunks."""
         chunk_summaries = []
         for i, chunk in enumerate(chunks):
             logger.info(f"Summarizing chunk {i + 1}/{len(chunks)}...")
-            user_prompt_chunk = SummarizedPrompt.SYSTEM_PROMPT_CHUNK.format(chunk=chunk)
+            user_prompt_chunk = SummarizedPrompt.USER_PROMPT_CHUNK.format(chunk=chunk)
             summary = self._make_request(
                 SummarizedPrompt.SYSTEM_PROMPT_CHUNK, user_prompt_chunk
             )

@@ -2,8 +2,8 @@ from pathlib import Path
 
 from fastapi import UploadFile
 
-from src.app.utils.exceptions import FileTooLargeError, UnsupportedFileTypeError
 from src.app.config import get_settings
+from src.app.utils.exceptions import FileTooLargeError, UnsupportedFileTypeError
 
 settings = get_settings()
 

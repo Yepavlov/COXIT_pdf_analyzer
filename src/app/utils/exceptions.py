@@ -19,27 +19,6 @@ class ValidationError(PDFSummaryError):
         super().__init__(message, "VALIDATION_ERROR")
 
 
-class PDFParsingError(PDFSummaryError):
-    """Exception raised during PDF parsing."""
-
-    def __init__(self, message: str):
-        super().__init__(message, "PDF_PARSING_ERROR")
-
-
-class OpenAIServiceError(PDFSummaryError):
-    """Exception raised during OpenAI API calls."""
-
-    def __init__(self, message: str):
-        super().__init__(message, "OPENAI_SERVICE_ERROR")
-
-
-class DocumentServiceError(PDFSummaryError):
-    """Exception raised during document service operations."""
-
-    def __init__(self, message: str):
-        super().__init__(message, "DOCUMENT_SERVICE_ERROR")
-
-
 class FileTooLargeError(ValidationError):
     """Exception raised when uploaded file is too large."""
 

@@ -3,6 +3,7 @@ Configuration module for PDF Summary AI application.
 """
 
 from pathlib import Path
+
 from pydantic.v1 import BaseSettings, validator
 
 
@@ -30,15 +31,13 @@ class Settings(BaseSettings):
     timeout = 300.0
     temperature = 0.2
 
-    @classmethod
     @validator("openai_api_key")
-    def validata_openai_api_key(cls, key: str) -> str:
+    def validate_openai_api_key(cls, key: str) -> str:
         """Validates OpenAI API key is provided."""
         if not key:
             raise ValueError("OpenAI API key must be provided")
         return key
 
-    @classmethod
     @validator("upload_dir", "data_dir")
     def create_directories(cls, dir_name: str) -> str:
         """Ensure directories exist."""
